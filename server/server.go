@@ -19,7 +19,9 @@ func main() {
 		port = defaultPort
 	}
 
-	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
+	gqlConfig := generated.Config{Resolvers: &graph.Resolver{}}
+	execSchema := generated.NewExecutableSchema(gqlConfig)
+	srv := handler.NewDefaultServer(execSchema)
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
