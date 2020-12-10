@@ -1,8 +1,3 @@
-module app
+module github.com/GenrihMD/subs
 
-go 1.13
-
-require (
-	github.com/99designs/gqlgen v0.13.0
-	github.com/vektah/gqlparser/v2 v2.1.0
-)
+go 1.15
