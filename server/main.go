@@ -2,8 +2,6 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 // HomeHandler handle Home
@@ -12,7 +10,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/", HomeHandler)
-	http.Handle("/", router)
+	subs := NewSubs("eng")
+
+	print(subs)
+
+	// router := mux.NewRouter()
+	// router.HandleFunc("/", HomeHandler)
+
+	// http.Handle("/", router)
 }
