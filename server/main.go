@@ -9,10 +9,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type Author struct {
+	Name string `json:"name"`
+}
+
 type Post struct {
 	ID    string `json:"id"`
 	Title string `json:"title"`
 	Body  string `json:"body"`
+	Author Author `json: "author"`
 }
 
 var posts []Post
@@ -21,6 +26,7 @@ func getPosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(posts)
 }
+
 func createPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var post Post
