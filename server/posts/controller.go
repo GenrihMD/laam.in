@@ -1,11 +1,19 @@
-package main
+package posts
 
-func getPosts(w http.ResponseWriter, r *http.Request) {
+import (
+	"encoding/json"
+	"math/rand"
+	"github.com/gorilla/mux"
+	"net/http"
+	"strconv"
+)
+
+func GetPosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(posts)
 }
 
-func createPost(w http.ResponseWriter, r *http.Request) {
+func CreatePost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var post Post
 	_ = json.NewDecoder(r.Body).Decode(&post)
@@ -14,7 +22,7 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&post)
 }
 
-func getPost(w http.ResponseWriter, r *http.Request) {
+func GetPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for _, item := range posts {
@@ -26,7 +34,7 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&Post{})
 }
 
-func getPostAuthor(w http.ResponseWriter, r *http.Request) {
+func GetPostAuthor(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for _, item := range posts {
@@ -38,7 +46,7 @@ func getPostAuthor(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&Post{})
 }
 
-func updatePost(w http.ResponseWriter, r *http.Request) {
+func UpdatePost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range posts {
@@ -55,7 +63,7 @@ func updatePost(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(posts)
 }
 
-func deletePost(w http.ResponseWriter, r *http.Request) {
+func DeletePost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range posts {

@@ -1,22 +1,19 @@
 package main
 
 import (
-	"encoding/json"
-	"math/rand"
-	"net/http"
-	"strconv"
-
+	"github.com/GenrihMD/subs/posts"
 	"github.com/gorilla/mux"
+	"net/http"
 )
 
 func main() {
 	router := mux.NewRouter()
-	posts = append(posts, Post{ID: "1", Title: "My first post", Body: "This is the content of my first post"})
-	router.HandleFunc("/posts", getPosts).Methods("GET")
-	router.HandleFunc("/posts", createPost).Methods("POST")
-	router.HandleFunc("/posts/{id}", getPost).Methods("GET")
-	router.HandleFunc("/posts/{id}/author", getPostAuthor).Methods("GET")
-	router.HandleFunc("/posts/{id}", updatePost).Methods("PUT")
-	router.HandleFunc("/posts/{id}", deletePost).Methods("DELETE")
+
+	router.HandleFunc("/posts", posts.GetPosts).Methods("GET")
+	router.HandleFunc("/posts", posts.CreatePost).Methods("POST")
+	router.HandleFunc("/posts/{id}", posts.GetPost).Methods("GET")
+	router.HandleFunc("/posts/{id}/author", posts.GetPostAuthor).Methods("GET")
+	router.HandleFunc("/posts/{id}", posts.UpdatePost).Methods("PUT")
+	router.HandleFunc("/posts/{id}", posts.DeletePost).Methods("DELETE")
 	http.ListenAndServe(":8000", router)
 }
