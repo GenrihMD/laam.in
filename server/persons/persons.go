@@ -1,7 +1,7 @@
 package persons
 
 type Person struct {
-	name string `json:name`
+	Name string `json:name`
 }
 
 var Persons []Person

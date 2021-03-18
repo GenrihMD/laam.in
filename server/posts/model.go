@@ -12,7 +12,8 @@ type Post struct {
 }
 
 var posts []Post
+var laamin = persons.Person{"laamin"}
 
 func init() {
-	posts = append(posts, Post{ID: "1", Title: "My first post", Body: "This is the content of my first post"})
+	posts = append(posts, Post{ID: "1", Title: "My first post", Body: "This is the content of my first post", Author: laamin})
 }
